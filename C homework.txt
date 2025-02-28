@@ -1,0 +1,1141 @@
+//Ex 1
+#include <stdio.h>
+
+int main() {
+    double num1, num2, result;//variables to store number
+    char operator;//variables to store operator
+    
+    printf("Enter an expression: ");//prompt the person to enter an expression
+    
+    if (scanf("%lf %c %lf", &num1, &operator, &num2) != 3) {
+        printf("Invalid input.\n");//handle invalid values
+        return 1;//exit with an error
+    }
+    
+    switch (operator) {
+        case '+':
+            result = num1 + num2;//addition
+            break;
+        case '-':
+            result = num1 - num2;//subtraction
+            break;
+        case '*':
+            result = num1 * num2;//multiplication
+            break;
+        case '/':
+            if (num2 == 0) {//check if is divisible by 0
+                printf("Error: Division by zero.\n");
+                return 1;
+            }
+            result = num1 / num2;//division
+            break;
+        default:
+            printf("Invalid operator.\n");//handle invalid password
+            return 1;//exit with error
+    }
+    
+    printf("%.2lf %c %.2lf = %.2lf\n", num1, operator, num2, result);
+    
+    return 0;
+}
+
+//Ex1.1
+
+#include <stdio.h>
+
+int main() {
+    double num1, num2, result;//variables to store the numbers
+    char operator;//variables to store operator
+    
+    printf("Enter an expression: ");
+    //read user input
+    
+    if (scanf("%lf %c %lf", &num1, &operator, &num2) != 3) {
+        printf("Invalid input.\n");//handle invalid input
+        return 1;//exit with any error
+    }
+    
+    switch (operator) {
+        case '+':
+            result = num1 + num2;//addition
+            break;
+        case '-':
+            result = num1 - num2;//substraction
+            break;
+        case '*':
+            result = num1 * num2;//multiplication
+            break;
+        case '/':
+            if (num2 == 0) {
+                printf("Error: Division by zero.\n");
+                return 1;
+            }
+            result = num1 / num2;//division
+            break;
+        default:
+            printf("Invalid operator.\n");
+            return 1;
+    }
+    
+    printf("%.0lf %c %.0lf = %.3lf\n", num1, operator, num2, result);
+    
+    return 0;
+}
+
+// Ex1.2
+
+#include <stdio.h>
+
+int main() {
+    double num1, num2, result;
+    char operator;
+    // Prompt user for an expression 
+    printf("Enter an expression: ");
+    
+    switch (scanf("%lf %c %lf", &num1, &operator, &num2) == 3) {
+        case 0:
+            printf("Invalid input.\n");
+            return 1;
+    }
+    // Perform operation based on operator
+    switch (operator) {
+        case '+':
+            result = num1 + num2;
+            break;
+        case '-':
+            result = num1 - num2;
+            break;
+        case '*':
+            result = num1 * num2;
+            break;
+        case '/':
+        // Validate division by zero using switch case
+            switch (num2 == 0) {
+                case 1:
+                    printf("Error: Division by zero.\n");
+                    return 1;
+            }
+            result = num1 / num2;
+            break;
+        default:
+            printf("Invalid operator.\n");
+            return 1;
+    }
+    
+    printf("%.0lf %c %.0lf = %.3lf\n", num1, operator, num2, result);
+    
+    return 0;
+}
+
+//Ex 2
+
+#include <stdio.h>
+
+int main() {
+    int grade;
+    
+    printf("Enter your grade (0-100): ");
+    
+    if (scanf("%d", &grade) != 1 || grade < 0 || grade > 100) {
+        printf("Invalid input. Please enter a number between 0 and 100.\n");
+        return 1;
+    }
+    
+    char letterGrade;
+    // Convert numeric grade to letter grade using switch case
+    switch (grade / 10) {
+        case 10:
+        case 9:
+            letterGrade = 'A';
+            break;
+        case 8:
+            letterGrade = 'B';
+            break;
+        case 7:
+            letterGrade = 'C';
+            break;
+        case 6:
+            letterGrade = 'D';
+            break;
+        default:
+            letterGrade = 'F';
+            break;
+    }
+    
+    printf("Your grade is %c\n", letterGrade);
+    
+    return 0;
+}
+
+//Ex2.1
+
+#include <stdio.h>
+
+int main() {
+    int grade;
+    
+    while (1) {//loop to allow multiple inputs
+        printf("Enter your grade (0-100) or -1 to exit: ");
+        // validate input
+        if (scanf("%d", &grade) != 1) {
+            printf("Invalid input. Please enter a number between 0 and 100.\n");
+            return 1;
+        }
+        // check for exit condition
+        if (grade == -1) {
+            printf("Exiting program.\n");
+            break;
+        }
+        // validate range
+        if (grade < 0 || grade > 100) {
+            printf("Invalid grade. Please enter a number between 0 and 100.\n");
+            continue;
+        }
+        
+        char letterGrade;
+        // convert numeric grade to letter grade
+        switch (grade / 10) {
+            case 10:
+            case 9:
+                letterGrade = 'A';
+                break;
+            case 8:
+                letterGrade = 'B';
+                break;
+            case 7:
+                letterGrade = 'C';
+                break;
+            case 6:
+                letterGrade = 'D';
+                break;
+            default:
+                letterGrade = 'F';
+                break;
+        }
+        
+        printf("Your grade is %c\n", letterGrade);
+    }
+    
+    return 0;
+}
+
+//Ex3
+
+#include <stdio.h>
+
+int main() {
+    int N, sum = 0;
+    
+    printf("Enter a number (1-1000): ");
+    // validate the input
+    if (scanf("%d", &N) != 1 || N < 1 || N > 1000) {
+        printf("Invalid input. Please enter a number between 1 and 1000.\n");
+        return 1;
+    }
+    // loop through numbers below N and sum multiples of 3 and 5
+    for (int i = 1; i < N; i++) {
+        if (i % 3 == 0 || i % 5 == 0) {
+            sum += i;
+        }
+    }
+    
+    printf("The sum of all multiples of 3 and 5 below %d is %d\n", N, sum);
+    
+    return 0;
+}
+
+//Ex4
+
+#include <stdio.h>
+
+int main() {
+    int num, sum = 0, digit;
+    
+    // input the number
+    printf("Enter an integer: ");
+    scanf("%d", &num);
+    
+    // make sure to handle negative numbers
+    if (num < 0) {
+        num = -num;
+    }
+    // compute the sum of digits
+    while (num > 0) {
+        digit = num % 10; // Extract last digit
+        sum += digit;     // Add to sum
+        num /= 10;        // Remove last digit
+    }
+    
+    
+    printf("Sum of digits: %d\n", sum);
+    
+    return 0;
+}
+
+
+//Ex5
+
+#include <stdio.h>
+
+int main() {
+    int num, reversed = 0, digit;
+    
+    // input the number
+    printf("Enter an integer: ");
+    scanf("%d", &num);
+    
+    // make sure to handle negative numbers
+    int original_num = num;
+    if (num < 0) {
+        num = -num;
+    }
+    
+    // compute the inverse of number
+    while (num > 0) {
+        digit = num % 10; // Extract last digit
+        reversed = reversed * 10 + digit; // Append digit to reversed number
+        num /= 10; // Remove last digit
+    }
+    
+    if (original_num < 0) {
+        printf("Inverse of the number: -%d\n", reversed);
+    } else {
+        printf("Inverse of the number: %d\n", reversed);
+    }
+    return 0;
+}
+
+
+//Ex6
+
+#include <stdio.h>
+
+int main() {
+    int num, i, is_prime = 1;
+    
+    
+    printf("Enter an integer: ");
+    scanf("%d", &num);
+    
+    // handle edge cases
+    if (num <= 1) {
+        is_prime = 0;
+    } else {
+        // check the divisibility
+        for (i = 2; i * i <= num; i++) {
+            if (num % i == 0) {
+                is_prime = 0;
+                break;
+            }
+        }
+    }
+    
+    if (is_prime) {
+        printf("%d is a prime number.\n", num);
+    } else {
+        printf("%d is not a prime number.\n", num);
+    }
+    
+    return 0;
+}
+
+
+//Ex6.1
+
+#include <stdio.h>
+
+// function to check if a number is prime
+int is_prime(int num) {
+    if (num <= 1) return 0;
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) return 0;
+    }
+    return 1;
+}
+
+int main() {
+    int N;
+    printf("Enter an integer N: ");
+    scanf("%d", &N);
+    
+    // print all prime numbers in a range 1 to N
+    printf("Prime numbers from 1 to %d are: ", N);
+    for (int i = 1; i <= N; i++) {
+        if (is_prime(i)) {
+            printf("%d ", i);
+        }
+    }
+    printf("\n");
+    
+    return 0;
+}
+
+
+//Ex7
+
+#include <stdio.h>
+
+// function to check if a number is a palindrome
+int is_palindrome(int num) {
+    int original = num, reversed = 0, digit;
+   
+    while (num > 0) {
+        digit = num % 10;
+        reversed = reversed * 10 + digit;
+        num /= 10;
+    }
+    return original == reversed;
+}
+
+int main() {
+    int num;
+    
+    // input the number
+    printf("Enter an integer: ");
+    scanf("%d", &num);
+    
+    // check if the number is a palindrome
+    if (is_palindrome(num)) {
+        printf("%d is a palindrome number.\n", num);
+    } else {
+        printf("%d is not a palindrome number.\n", num);
+    }
+    return 0;
+}
+
+
+//Ex8
+
+#include <stdio.h>
+
+int main() {
+    int num1, num2;
+    char concatenated[20];
+    
+    // input two numbers
+    printf("Enter first number: ");
+    scanf("%d", &num1);
+    printf("Enter second number: ");
+    scanf("%d", &num2);
+    
+    // concatenate numbers as strings
+    sprintf(concatenated, "%d%d", num1, num2);
+    
+    printf("Concatenated number: %s\n", concatenated);
+    
+    return 0;
+}
+
+
+//Ex9
+
+#include <stdio.h>
+
+// function to check if a number is a power of 2
+int is_power_of_two(int num) {
+    return (num > 0) && ((num & (num - 1)) == 0);
+}
+
+int main() {
+    int num;
+    
+    printf("Enter an integer: ");
+    scanf("%d", &num);
+    
+    // check if the number is a power of 2
+    if (is_power_of_two(num)) {
+        printf("%d is a power of 2.\n", num);
+    } else {
+        printf("%d is not a power of 2.\n", num);
+    }
+    return 0;
+}
+
+
+//Ex10
+
+#include <stdio.h>
+
+int main() {
+    int N, M;
+    char ch;
+    
+    // input dimensions and character
+    printf("Enter the number of rows (N): ");
+    scanf("%d", &N);
+    printf("Enter the number of columns (M): ");
+    scanf("%d", &M);
+    printf("Enter the character to draw the rectangle: ");
+    scanf(" %c", &ch);
+    
+    // draw the rectangle
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            if (i == 0 || i == N - 1 || j == 0 || j == M - 1) {
+                printf("%c", ch);
+            } else {
+                printf(" ");
+            }
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}
+
+
+//Ex11
+
+#include <stdio.h>
+
+int main() {
+    int N;
+    
+    // input height of the triangles
+    printf("Enter the height of the triangles (N): ");
+    scanf("%d", &N);
+    
+    // first right-angled triangle
+    for (int i = 1; i <= N; i++) {
+        for (int j = 1; j <= i; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+    
+    printf("\n"); // divide the two triangles
+    
+    // second right-angled triangle 
+    for (int i = 1; i <= N; i++) {
+        for (int j = 1; j <= N - i; j++) {
+            printf(" ");
+        }
+        for (int k = 1; k <= i; k++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}
+
+
+//Ex12
+
+#include <stdio.h>
+
+int main() {
+    int N;
+    
+    printf("Enter the height of the triangle (N): ");
+    scanf("%d", &N);
+    
+    // draw the isosceles triangle of height N
+    for (int i = 1; i <= N; i++) {
+        for (int j = 1; j <= N - i; j++) {
+            printf(" ");
+        }
+        for (int k = 1; k <= (2 * i - 1); k++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}
+
+//Ex13
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int randomNumber, userGuess, attempts = 0;
+    
+    // seed the random number generator
+    srand(time(0));
+    
+    // generate a random number between 1 and 100
+    randomNumber = (rand() % 100) + 1;
+    
+    printf("Guess the number (between 1 and 100): \n");
+    
+    // loop until the user guesses correctly
+    do {
+        printf("Enter your guess: ");
+        scanf("%d", &userGuess);
+        attempts++;
+        
+        if (userGuess > randomNumber) {
+            printf("Too high! Try again.\n");
+        } else if (userGuess < randomNumber) {
+            printf("Too low! Try again.\n");
+        } else {
+            printf("Congrats! You guessed the correct number in %d attempts.\n", attempts);
+        }
+    } while (userGuess != randomNumber);
+    
+    return 0;
+}
+
+
+//Ex14
+
+#include <stdio.h>
+
+int main() {
+    int low = 1, high = 100, guess, response;
+    
+    printf("Think of a number between 1 and 100, and I will try to guess it!\n");
+    
+    while (low <= high) {
+        guess = (low + high) / 2; // binary search strategy
+        printf("Is your number %d?\n", guess);
+        printf("Enter 1 if too high, -1 if too low, or 0 if correct: ");
+        scanf("%d", &response);
+        
+        if (response == 0) {
+            printf("Yay! I guessed your number correctly!\n");
+            break;
+        } else if (response == 1) {
+            high = guess - 1; // adjust the upper bound
+        } else if (response == -1) {
+            low = guess + 1; // adjust the lower bound
+        } else {
+            printf("Invalid response. Please enter 1, -1, or 0.\n");
+        }
+    }
+    
+    return 0;
+}
+
+
+//Ex15
+
+#include <stdio.h>
+
+int main() {
+    int numbers[10], min, max;
+    
+    // input 10 numbers
+    printf("Enter 10 numbers: \n");
+    for (int i = 0; i < 10; i++) {
+        scanf("%d", &numbers[i]);
+    }
+    
+    // initialize min and max with the first number
+    min = max = numbers[0];
+    
+    // find the minimal and maximal numbers
+    for (int i = 1; i < 10; i++) {
+        if (numbers[i] < min) {
+            min = numbers[i];
+        }
+        if (numbers[i] > max) {
+            max = numbers[i];
+        }
+    }
+    
+    printf("Minimal number: %d\n", min);
+    printf("Maximal number: %d\n", max);
+    
+    return 0;
+}
+
+
+Ex16
+
+#include <stdio.h>
+
+int main() {
+    int counts[10] = {0}; // array to store counts for numbers 1-10
+    int num;
+    
+    printf("Enter numbers between 1 and 10 (enter -1 to stop): \n");
+    
+    while (1) {
+        scanf("%d", &num);
+        
+        if (num == -1) {
+            break; // exit the loop when -1 is entered
+        }
+        
+        if (num >= 1 && num <= 10) {
+            counts[num - 1]++; // increment count for the entered number
+        } else {
+            printf("Invalid input. Please enter a number between 1 and 10.\n");
+        }
+    }
+    
+    printf("Number frequencies:\n");
+    for (int i = 0; i < 10; i++) {
+        printf("%d: %d times\n", i + 1, counts[i]);
+    }
+    
+    return 0;
+}
+
+
+//Ex17
+
+#include <stdio.h>
+
+// function to print binary representation in 4 bits 
+void print_binary(int num) {
+    for (int i = 3; i >= 0; i--) {
+        printf("%d", (num >> i) & 1);
+    }
+    printf("\n");
+}
+
+int main() {
+    int num;
+    
+    printf("Enter a number (-8 to 7): ");
+    scanf("%d", &num);
+    
+    // ensure number is within 4-bit range
+    if (num < -8 || num > 7) {
+        printf("Number out of range for 4-bit representation.\n");
+        return 1;
+    }
+    // convert to 4-bit two's complement representation
+    unsigned int binary_num = (unsigned int)(num & 0xF); 
+    
+    printf("Binary (4-bit 2's complement): ");
+    print_binary(binary_num);
+    
+    return 0;
+}
+
+
+//Ex18
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+// function to convert binary string to decimal
+int binary_to_decimal(const char *binary) {
+    int decimal = 0, length = strlen(binary);
+    for (int i = 0; i < length; i++) {
+        if (binary[i] == '1') {
+            decimal += pow(2, length - 1 - i);
+        } else if (binary[i] != '0') {
+            printf("Invalid binary input.\n");
+            return -1;
+        }
+    }
+    return decimal;
+}
+
+int main() {
+    char binary[33]; // supports up to 32-bit binary numbers
+  
+    printf("Enter a binary number: ");
+    scanf("%32s", binary);
+    
+    // convert and print the decimal equivalent
+    int decimal = binary_to_decimal(binary);
+    if (decimal != -1) {
+        printf("Decimal equivalent: %d\n", decimal);
+    }
+    
+    return 0;
+}
+
+
+//Ex19
+
+
+    printf("Enter 10 integers: \n");
+    for (int i = 0; i < 10; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    // input the value to search and remove
+    printf("Enter the number to remove: ");
+    scanf("%d", &N);
+    
+    // Search for N and remove first occurrence
+    for (int i = 0; i < 10; i++) {
+        if (arr[i] == N) {
+            found = 1;
+            for (int j = i; j < 9; j++) {
+                arr[j] = arr[j + 1]; // Shift left
+            }
+            arr[9] = 0; // Add zero at the end
+            break; // Remove only the first occurrence
+        }
+    }
+    
+    // Print the final array
+    printf("Final array: ");
+    for (int i = 0; i < 10; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    if (!found) {
+        printf("Number not found in the array.\n");
+    }
+    
+    return 0;
+}
+
+//Ex20
+
+#include <stdio.h>
+
+int main() {
+    int N;
+    
+    // input the number of elements
+    printf("Enter the number of elements (N): ");
+    scanf("%d", &N);
+    
+    int arr[N];
+    
+    // input the sequence
+    printf("Enter %d numbers: \n", N);
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    // print the sequence in reverse order
+    printf("Reversed sequence: ");
+    for (int i = N - 1; i >= 0; i--) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}
+
+
+//Ex21
+
+#include <stdio.h>
+
+int main() {
+    int N, sum = 0;
+    
+    // input the number of elements
+    printf("Enter the number of elements (N): ");
+    scanf("%d", &N);
+    
+    int arr[N];
+    
+    // input the sequence and calculate the sum
+    printf("Enter %d whole numbers: \n", N);
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &arr[i]);
+        sum += arr[i];
+    }
+    
+
+    printf("Sum of the sequence: %d\n", sum);
+    
+    return 0;
+}
+
+
+//Ex22
+
+#include <stdio.h>
+
+int main() {
+    int N, ascending = 1, descending = 1;
+    
+    // input the number of elements
+    printf("Enter the number of elements (N): ");
+    scanf("%d", &N);
+    
+    int arr[N];
+    
+    // input the sequence
+    printf("Enter %d whole numbers: \n", N);
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    // check if the sequence is sorted
+    for (int i = 1; i < N; i++) {
+        if (arr[i] < arr[i - 1]) {
+            ascending = 0;
+        }
+        if (arr[i] > arr[i - 1]) {
+            descending = 0;
+        }
+    }
+    
+    if (ascending || descending) {
+        printf("Yes\n");
+    } else {
+        printf("No\n");
+    }
+    
+    return 0;
+}
+
+
+//Ex23
+
+#include <stdio.h>
+
+// function to sort the array in ascending order
+void sortAscending(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap elements
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+// function to sort the array in descending order
+void sortDescending(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] < arr[j + 1]) {
+                // swap elements
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int n, choice;
+    
+    // input the size of the array
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+    
+    int arr[n];
+    
+    // input the elements of the array
+    printf("Enter %d numbers: ", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    // ssk user for sorting preference
+    printf("Choose sorting order: \n1. Ascending\n2. Descending\nEnter your choice: ");
+    scanf("%d", &choice);
+    
+    // sort based on user choice
+    if (choice == 1) {
+        sortAscending(arr, n);
+        printf("Sorted numbers in ascending order: ");
+    } else if (choice == 2) {
+        sortDescending(arr, n);
+        printf("Sorted numbers in descending order: ");
+    } else {
+        printf("Invalid choice!\n");
+        return 1;
+    }
+    
+    // print the sorted array
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}
+
+
+//Ex24
+
+#include <stdio.h>
+
+// function to delete the M-th element from the array
+void deleteElement(int arr[], int *n, int m) {
+    if (m < 1 || m > *n) {
+        printf("Invalid position!\n");
+        return;
+    }
+    for (int i = m - 1; i < *n - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    (*n)--;
+}
+
+int main() {
+    int n, m;
+    
+    // input the size of the array
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+    
+    int arr[n];
+    
+    // input the elements of the array
+    printf("Enter %d numbers: ", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    // ask user for the position to delete
+    printf("Enter the position of the element to delete: ");
+    scanf("%d", &m);
+    
+    // delete the element
+    deleteElement(arr, &n, m);
+    
+   
+    printf("Updated sequence: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}
+
+
+//Ex25
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int N, K;
+    printf("Enter N: ");
+    scanf("%d", &N);
+    
+    int *arr = (int *)malloc((N + 1) * sizeof(int));
+    printf("Enter %d numbers: ", N);
+    for (int i = 1; i <= N; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter K: ");
+    scanf("%d", &K);
+
+    arr[0] = K;
+    N++;
+
+    printf("Updated sequence: ");
+    for (int i = 0; i < N; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    free(arr);
+    return 0;
+}
+//EX26
+
+#include <stdio.h>
+
+int main() {
+    char str[100];
+    int i;
+    
+    printf("Enter a string: ");
+    scanf("%99s", str);
+    
+    // convert to uppercase
+    for (i = 0; str[i] != '\0'; i++) {
+        if (str[i] >= 'a' && str[i] <= 'z') {
+            str[i] = str[i] - ('a' - 'A');
+        }
+    }
+    printf("Uppercase: %s\n", str);
+    
+    // convert to lowercase
+    for (i = 0; str[i] != '\0'; i++) {
+        if (str[i] >= 'A' && str[i] <= 'Z') {
+            str[i] = str[i] + ('a' - 'A');
+        }
+    }
+    printf("Lowercase: %s\n", str);
+    
+    return 0;
+}
+
+//EX27
+
+#include <stdio.h>
+
+int main() {
+    char str1[100], str2[100];
+    int count1[26] = {0}, count2[26] = {0}, i;
+    
+    printf("Enter first string: ");
+    scanf("%99s", str1);
+    printf("Enter second string: ");
+    scanf("%99s", str2);
+    // count letter occurrences in the first string
+    for (i = 0; str1[i] != '\0'; i++) {
+        if (str1[i] >= 'a' && str1[i] <= 'z') {
+            count1[str1[i] - 'a']++;
+        } else if (str1[i] >= 'A' && str1[i] <= 'Z') {
+            count1[str1[i] - 'A']++;
+        }
+    }
+    // count letter occurrences in the second string
+    for (i = 0; str2[i] != '\0'; i++) {
+        if (str2[i] >= 'a' && str2[i] <= 'z') {
+            count2[str2[i] - 'a']++;
+        } else if (str2[i] >= 'A' && str2[i] <= 'Z') {
+            count2[str2[i] - 'A']++;
+        }
+    }
+    // compare character frequency of both strings
+    for (i = 0; i < 26; i++) {
+        if (count1[i] != count2[i]) {
+            printf("Not an anagram\n");
+            return 0;
+        }
+    }
+    
+    printf("Anagram\n");
+    return 0;
+}
+
+//EX28
+
+#include <stdio.h>
+
+int main() {
+    char str1[100], str2[100];
+    int i, j, found;
+    
+    printf("Enter first string: ");
+    scanf("%99s", str1);
+    printf("Enter second string: ");
+    scanf("%99s", str2);
+   // iterate through each character of the first string
+    for (i = 0; str1[i] != '\0'; i++) {
+        found = 1;
+        // check if the second string matches at this position
+        for (j = 0; str2[j] != '\0'; j++) {
+            if (str1[i + j] != str2[j]) {
+                found = 0;
+                break;
+            }
+        }
+         // if we successfully matched all characters of str2
+        if (found && str2[j] == '\0') {
+            printf("Substring\n");
+            return 0;
+        }
+    }
+    
+    printf("Not a substring\n");
+    return 0;
+}
+
+
+
+
+
